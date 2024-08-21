@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        body {
+            background: rgb(238, 174, 202);
+            background: radial-gradient(
+                circle,
+                rgba(238, 174, 202, 1) 0%,
+                rgba(148, 187, 233, 1) 100%
+            );
+        }
+        .main {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .title {
+            font-size: 64px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            padding: 1rem;
+            color: white;
+            animation: glow 2s infinite;
+        }
+        .input-box, .button {
+            margin: 0.5rem;
+        }
+        input {
+            font-size: 24px;
+            padding: 0.5rem;
+            width: 300px; /* Adjust width as needed */
+            border: 2px solid #fff;
+            border-radius: 5px;
+        }
+        button {
+            font-size: 24px;
+            padding: 0.5rem 1rem;
+            width: 150px; /* Adjust width as needed */
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        .subtitle {
+            padding-bottom: 20px;
+        }
+        .topic {
+            text-transform: uppercase;
+            font-size: 54px;
+            font-weight: 600;
+            color: whitesmoke;
+            letter-spacing: 0.1rem;
+            font-style: oblique;
+        }
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 2px rgba(255, 255, 255, 0.3),
+                             0 0 4px rgba(255, 255, 255, 0.2),
+                             0 0 6px rgba(255, 255, 255, 0.1);
+            }
+            50% {
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.6),
+                             0 0 12px rgba(255, 255, 255, 0.4),
+                             0 0 16px rgba(255, 255, 255, 0.2);
+            }
+        }
+        @media (max-width: 84em) {
+            .title {
+                font-size: 60px;
+            }
+            .topic {
+                font-size: 50px;
+            }
+        }
+        @media (max-width: 75em) {
+            .title {
+                font-size: 56px;
+            }
+            .topic {
+                font-size: 42px;
+            }
+        }
+        @media (max-width: 59em) {
+            .title {
+                font-size: 36px;
+            }
+            .topic {
+                font-size: 30px;
+            }
+        }
+        @media (max-width: 44em) {
+            .title {
+                font-size: 28px;
+            }
+            .topic {
+                font-size: 24px;
+            }
+        }
+        @media (max-width: 34em) {
+            .title {
+                font-size: 22px;
+            }
+            .topic {
+                font-size: 18px;
+            }
+        }
+        @media (max-width: 24em) {
+            .title {
+                font-size: 18px;
+            }
+            .topic {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <div class="title">Guess The Number</div>
+            <input id="guessnumber" type="number" min="1" max="10" placeholder="Enter a number between 1 and 10">
+            <button onclick="check()">Check</button>
+            <p id="result"><em>You are Wrong/Right!</em></p>
+            <p id="score">Score: 10</p>
+        </div>
+    </div>
+    <script>
+        // Selecting input box and paragraph elements
+        var guessnumber = document.getElementById("guessnumber");
+        var result = document.getElementById("result");
+        var score = document.getElementById("score");
+        var randomNumber = Math.floor(Math.random() * 10) + 1;
+        var totalscore = 10;
+
+        function check() {
+            var enterednumber = Number(guessnumber.value);
+            if (randomNumber === enterednumber) {
+                result.textContent = "Right";
+                alert("YOU WON!");
+                // Optionally reset the game
+                randomNumber = Math.floor(Math.random() * 10) + 1;
+            } else {
+                totalscore -= 1;
+                score.textContent = "Score: " + totalscore;
+                result.textContent = "Wrong";
+            }
+        }
+    </script>
+</body>
+</html>
